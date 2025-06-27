@@ -1,0 +1,287 @@
+---
+import roblox from '../assets/roblos.png';
+import pintrest from '../assets/pintres.png';
+import discord from '../assets/discors.png';
+import genshin from '../assets/gebsin.png';
+import minecraft from '../assets/mineraft.png';
+import fortnite from '../assets/fortnit.png';
+import hover from '../audio/hover.mp3';
+import select from '../audio/select.mp3';
+import { Image } from 'astro:assets';
+
+const icons = [
+  { src: roblox, alt: 'roblox' , link: "javascript: window.location = 'https://www.roblox.com/users/1322470108/profile'", tooltip: " Roblox @Spotsiee"},
+  { src: pintrest, alt: 'pinterest', link: "javascript: window.location = 'https://pinterest.com/Spotsiiee/'", tooltip: "Pintrest @Spotsiiee"},
+  { src: discord, alt: 'discord', link: "javascript: window.location = 'https://discord.com/users/1067749602356383796'", tooltip: "Discord @spwotsi"},
+  { src: genshin, alt: 'genshin', value:"620893741", tooltip: "Genshin ID 620893741 Click to copy!"},
+  { src: minecraft, alt: 'minecraft', value:"gagestink23", tooltip: "Minecraft @gagestink23 Click to copy!"},
+  { src: fortnite, alt: 'fortnite', value:"spots ۶ৎ ᵛˣˢ",tooltip: "Fortnite @spots ۶ৎ vxs Click to copy!"},
+];
+---
+
+<audio id="hover-sound" src={hover}></audio>
+<audio id="select-sound" src={select}></audio>
+
+<div>
+    <main>
+        <section id = title>
+            <h1>spwotsi</h1>
+            <h2>- js call me spots</h2>
+        </section>
+        <section id="links" class="icon-group">
+            {icons.map((icon, i) => (
+                <div class="link-wrap">
+                    <a onclick={icon.link}>
+                        <Image class="icon" src={icon.src} alt={icon.alt} icon-value={icon.value} width={80} height={80} loading="eager" style="cursor: pointer"/>
+                    </a>
+                    <span class="tooltiptext" id={`tooltip-${i}`}>{icon.tooltip}</span>
+                </div>
+            ))}
+        </section>
+    </main>
+</div>
+
+<style>
+    #title h1{
+        text-align: center;
+        font-family: 'Kinkie', sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 100px;
+        margin: 0px;
+        color: #f2b0cb;
+    }
+
+    #title h2{
+        text-align: center;
+        font-family: 'Kinkie', sans-serif;
+        font-weight: 100;
+        font-style: normal;
+        font-size: 22px;
+        margin: 0px;
+        color: #f2b0cb;
+    }
+
+    #background {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -3;
+	}
+
+    #links {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px auto;
+        padding: 0 20px;
+        height: 100px;
+        background-color: #f2b0cb;
+        border-radius: 200px;
+        width: fit-content;
+        border: 5px solid #f2b0cb;
+        box-shadow: inset 0 0 0 2px white;   
+        z-index: 3;
+    }
+
+    #links img {
+        width: 80px; 
+        height: auto;
+        display: block;
+    }
+
+    .link-wrap {
+        position: relative;
+        z-index: 1;
+
+    }
+
+    .icon {
+        transition: transform 0.1s ease;
+    }
+
+    .link-wrap:hover .icon {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 25px #ff69b4e6)
+                drop-shadow(0 0 25px #ff69b480);
+    }
+
+    .icon {
+        transition: transform 0.2s ease-out;
+    }
+
+    .link-wrap:active .icon {
+        transform: scale(0.9);
+    }
+
+
+    .link-wrap span {
+        position: relative;
+        display: inline-block;
+    }
+
+    .link-wrap .tooltiptext {
+        visibility: hidden;
+        width: 130px;
+        background-color: rgb(255, 204, 236);
+        color: #fff;
+        text-align: center;
+        border-radius: 7px;
+        font-family: 'Genshin', sans-serif;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 8px;
+    }
+
+    .link-wrap .tooltiptext::after {
+        content: "";
+        position: absolute;
+        top: -12px; 
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 7px;
+        border-style: solid;
+        border-color: transparent transparent rgb(255, 204, 236);
+    }
+
+    .tooltiptext {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .link-wrap:hover .tooltiptext {
+        opacity: 1;
+        visibility: visible;
+        animation: floatTooltip 1s ease-in-out infinite;
+    }
+
+    @keyframes floatTooltip {
+        0%, 100% {
+            transform: translateX(-50%) translateY(0);
+        }
+        50% {
+            transform: translateX(-50%) translateY(-4px);
+        }
+    }
+
+    @font-face {
+        font-family: 'Genshin';
+        src: url('../fonts/genshit.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Kinkie';
+        src: url('/fonts/kinkie.regular.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    
+</style>
+
+<style>
+    @media screen and (max-width:1000px) {
+        #links {
+            display: flex !important;
+            flex-direction: column;
+            width: 90% !important;
+            padding: 0px !important;
+            gap: 10px;
+            background: none !important;
+            margin-top: 330px !important;
+            border-radius: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .link-wrap {
+            width: 100%;
+            background-color: #f2b0cb;
+            border: 5px solid #f2b0cb;
+            border-radius: 20px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: inset 0 0 0 2px white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .link-wrap .tooltiptext {
+            position: static !important;
+            display: inline;
+            width: 150px !important;
+            visibility: visible !important;
+            background: none !important;
+            transform: none !important;
+            opacity: 1;
+            font-size: 20px;
+            padding: 0;
+            margin: 0;
+            white-space: normal;
+            box-shadow: none;
+            border: none;
+        }
+
+        .link-wrap .tooltiptext::after {
+            display: none;
+        }
+
+        .icon {
+            width: 50px;
+            height: auto;
+        }
+    }
+</style>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const hoveraudio = document.getElementById("hover-sound") as HTMLAudioElement;
+    const selectaudio = document.getElementById("select-sound") as HTMLAudioElement;
+
+    document.querySelectorAll('.icon').forEach((icon, i) => {
+        const tooltip = document.getElementById(`tooltip-${i}`);
+        const original = tooltip?.textContent;
+
+        icon.addEventListener('click', () => {
+            const value = icon.getAttribute('icon-value');
+        
+            if (value && tooltip && original) {
+                navigator.clipboard.writeText(value).then(() => {
+                    console.log(`Copied: ${value}`);
+
+                    tooltip.textContent = original.replace("Click to copy!", "Copied!");
+
+                    setTimeout(() => {
+                        tooltip.textContent = original;
+                    }, 1500);
+                }).catch(err => {
+                    console.error('Clipboard copy failed:', err);
+                });
+            }
+        });
+
+        icon.addEventListener('mouseenter', () => {
+            hoveraudio.currentTime = 0;
+            hoveraudio.play().catch(err => console.warn("Playback failed:", err));
+            });
+
+        icon.addEventListener('click', () => {
+            selectaudio.currentTime = 0;
+            selectaudio.play().catch(err => console.warn("Playback failed:", err));
+            });
+        });
+    });
+</script>
+

@@ -1,0 +1,344 @@
+---
+import eating from '../assets/nom.gif';
+import tree from '../assets/sakura.png';
+import bad from '../assets/DONOT.png';
+import trigger from '../audio/triggered.mp3'
+
+const leafcount = 15;
+const leafArray = Array.from({ length: leafcount });
+---
+
+<audio id="trigger-sound" src={trigger}></audio>
+
+<div class="design">
+    <button id="yae-btn" data-original={eating.src} data-new={bad.src} type="button" style="all: unset; cursor: pointer;">
+        <img id="yae" src={eating.src} alt="fat"/>
+    </button>
+
+
+    <img id="tree" src={tree.src} alt="sakura"/>
+
+    <div id="leaves">
+        {leafArray.map(() => <i></i>)}
+    </div>
+</div>
+
+<style>
+    #yae{
+        position: fixed;
+        bottom: 0; 
+        left: 15%;  
+        transform: translateX(-50%); 
+        width: 250px;
+        z-index: 2;
+    }
+
+    .shake{
+        width: 200px !important;
+        left: 17% !important;
+        animation: shake 0.5s;
+        animation-iteration-count: 4;
+    }
+
+    #tree{
+        position: fixed;
+        bottom: -160px; 
+        left: 11%; 
+        transform: translateX(-50%); 
+        width: 1000px;
+        z-index: 0;
+    }
+
+    #leaves {
+        position:fixed;
+        bottom: 450px;
+        width:100%;
+        left: 8%;
+        opacity: 1;
+    }
+
+    #leaves i {
+        display: inline-block;
+        width: 150px;
+        height: 150px;
+        background: linear-gradient(to bottom right, #ff69b4e6, #ff69b480);
+        transform: skew(20deg);
+        border-radius: 5% 40% 70%;
+        box-shadow: inset 0px 0px 1px #222;
+        border: 1px solid #333;
+        z-index: -2;
+        -webkit-animation: falling 18s 0s infinite;
+    }
+
+    #leaves i:nth-of-type(2n) { -webkit-animation: falling2 15s 0s infinite; }
+    #leaves i:nth-of-type(3n) { -webkit-animation: falling3 12s 0s infinite; }
+
+    #leaves i:before {
+    position: fixed;
+    content: '';
+    top: 117px;
+    right: 9px;
+    height: 27px;
+    width: 32px;
+    
+    transform: rotate(49deg);
+    border-radius: 0% 15% 15% 0%;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+    border-left: 0px solid #222;
+    border-right: 1px solid #222;
+    background: linear-gradient(to right, #f395c4e6, #ff69b480);
+    z-index: 1;
+    }
+
+    #leaves i:after {
+    content: '';
+    height: 125px;
+    width: 10px;
+    background: linear-gradient(to right, rgba(0,0,0,.15), rgba(0,0,0,0));
+    display: block;
+    transform: rotate(125deg);
+    position: absolute;
+    left: 85px;
+    border-radius:50%;
+    }
+
+
+    #leaves i:nth-of-type(n)    { height:23px; width:30px; }
+    #leaves i:nth-of-type(n):before { width:7px; height:5px; top:17px; right:1px; }
+    #leaves i:nth-of-type(n):after { width:2px; height:17px; left: 12px; top:0px; }
+
+    #leaves i:nth-of-type(2n+1)    { height:11px; width:16px; }
+    #leaves i:nth-of-type(2n+1):before { width:4px; height:3px; top:7px; right:0px; }
+    #leaves i:nth-of-type(2n+1):after { width:2px; height:6px; left: 5px; top:1px; }
+
+    #leaves i:nth-of-type(3n+2)  { height:17px; width:23px; }
+    #leaves i:nth-of-type(3n+2):before  { height:4px; width:4px; top:12px; right:1px; }
+    #leaves i:nth-of-type(3n+2):after  { height:10px; width:2px; top:1px; left:8px; }
+
+    #leaves i:nth-of-type(n)   { -webkit-animation-delay: 1.9s;}
+    #leaves i:nth-of-type(2n)  { -webkit-animation-delay: 3.9s;}
+    #leaves i:nth-of-type(3n)  { -webkit-animation-delay: 2.3s;}
+    #leaves i:nth-of-type(4n)  { -webkit-animation-delay: 4.4s;}
+    #leaves i:nth-of-type(5n)  { -webkit-animation-delay: 5s;  }
+    #leaves i:nth-of-type(6n)  { -webkit-animation-delay: 3.5s;}
+    #leaves i:nth-of-type(7n)  { -webkit-animation-delay: 2.8s;}
+    #leaves i:nth-of-type(8n)  { -webkit-animation-delay: 1.5s;}
+    #leaves i:nth-of-type(9n)  { -webkit-animation-delay: 3.3s;}
+    #leaves i:nth-of-type(10n) { -webkit-animation-delay: 2.5s;}
+    #leaves i:nth-of-type(11n) { -webkit-animation-delay: 1.2s;}
+    #leaves i:nth-of-type(12n) { -webkit-animation-delay: 4.1s;}
+    #leaves i:nth-of-type(13n) { -webkit-animation-delay: 1s;  }
+    #leaves i:nth-of-type(14n) { -webkit-animation-delay: 4.7s;}
+    #leaves i:nth-of-type(15n) { -webkit-animation-delay: 3s;  }
+
+    #leaves i:nth-of-type(n)    { background: linear-gradient(to bottom right, #ff69b4e6, #f877b780); }
+    #leaves i:nth-of-type(2n+2)  { background: linear-gradient(to bottom right, #e670abe6, #e37aaf80); }
+    #leaves i:nth-of-type(4n+1)  { background: linear-gradient(to bottom right, #f991c5e6, #f086bb80); }
+
+    #leaves i {
+    opacity: 0;
+    }
+
+    #leaves i:nth-of-type(n)    {transform: rotate(180deg);}
+
+
+    #leaves i:nth-of-type(n) { -webkit-animation-timing-function:ease-in-out;}
+
+    @-webkit-keyframes falling {
+        
+        0% {
+            -webkit-transform:
+                translate3d(300,0,0)
+                rotate(0deg);
+                opacity: 0;
+        }
+
+        20% {
+            opacity: 1;
+        }
+        
+        100% {
+            -webkit-transform:
+                translate3d(700px,700px,0)
+                rotate(90deg);
+            opacity: 0;
+        }
+    }
+
+    @-webkit-keyframes falling2 {
+        0% {
+            -webkit-transform:
+                translate3d(0,0,0)
+                rotate(90deg);
+                opacity: 0;
+        }
+        
+        20% {
+            opacity: 1;
+        }
+        
+        100% {
+            -webkit-transform:
+                translate3d(400px,680px,0)
+                rotate(0deg);
+            opacity: 0;
+        }
+    }
+
+    @-webkit-keyframes falling3 {
+        0% {
+            -webkit-transform:
+                translate3d(0,0,0)
+                rotate(-20deg);
+                opacity: 0;
+        }
+
+        20% {
+            opacity: 1;
+        }
+        
+        100% {
+            -webkit-transform:
+                translate3d(460px,640px,0)
+                rotate(-70deg);
+            opacity: 0;
+        }
+    }
+
+    @-webkit-keyframes fallingmobile{
+    
+        0% {
+            -webkit-transform:
+                translate3d(300,0,0)
+                rotate(0deg);
+                opacity: 0;
+        }
+
+        20% {
+            opacity: 1;
+        }
+        
+        100% {
+            -webkit-transform:
+                translate3d(20px,900px,0)
+                rotate(90deg);
+            opacity: 0;
+        }
+    }
+
+    @-webkit-keyframes falling2mobile {
+        0% {
+            -webkit-transform:
+                translate3d(0,0,0)
+                rotate(90deg);
+                opacity: 0;
+        }
+        
+        20% {
+            opacity: 1;
+        }
+        
+        100% {
+            -webkit-transform:
+                translate3d(15px,880px,0)
+                rotate(0deg);
+            opacity: 0;
+        }
+    }
+
+    @-webkit-keyframes falling3mobile {
+        0% {
+            -webkit-transform:
+                translate3d(0,0,0)
+                rotate(-20deg);
+                opacity: 0;
+        }
+
+        20% {
+            opacity: 1;
+        }
+        
+        100% {
+            -webkit-transform:
+                translate3d(21px,840px,0)
+                rotate(-70deg);
+            opacity: 0;
+        }
+    }
+
+    @keyframes shake {
+        0% { transform: translateX(-50%) translate(1px, 1px) rotate(0deg); }
+        10% { transform: translateX(-50%) translate(-1px, -2px) rotate(-1deg); }
+        20% { transform: translateX(-50%) translate(-3px, 0px) rotate(1deg); }
+        30% { transform: translateX(-50%) translate(3px, 2px) rotate(0deg); }
+        40% { transform: translateX(-50%) translate(1px, -1px) rotate(1deg); }
+        50% { transform: translateX(-50%) translate(-1px, 2px) rotate(-1deg); }
+        60% { transform: translateX(-50%) translate(-3px, 1px) rotate(0deg); }
+        70% { transform: translateX(-50%) translate(3px, 1px) rotate(-1deg); }
+        80% { transform: translateX(-50%) translate(-1px, -1px) rotate(1deg); }
+        90% { transform: translateX(-50%) translate(1px, 2px) rotate(0deg); }
+        100% { transform: translateX(-50%) translate(1px, -2px) rotate(-1deg); }
+    }
+</style>
+
+<style>
+    @media screen and (max-width:1000px){
+        .design { 
+            text-align:center;   
+        }
+        
+        .design img {
+            display:inline-block;   
+        }
+
+        #yae{
+            position: relative !important;
+            display: block !important;
+            bottom: -300px !important;
+            left: 50% !important;
+        }
+
+        #tree{
+            opacity: 0;
+        }
+
+        #leaves{
+            top: -50px;
+            text-align: center;
+            left: 0% !important;
+        }
+
+        #leaves i{-webkit-animation-name: fallingmobile !important}
+        #leaves i:nth-of-type(2n) { -webkit-animation-name: falling2mobile !important}
+        #leaves i:nth-of-type(3n) { -webkit-animation-name: falling3mobile !important}
+    }
+
+</style>
+
+<script>
+    const button = document.getElementById('yae-btn') as HTMLButtonElement;
+    const img = document.getElementById('yae') as HTMLImageElement;
+    const triggeraudio = document.getElementById("trigger-sound") as HTMLAudioElement;
+
+    const originalSrc = button?.dataset.original!;
+    const newSrc = button?.dataset.new!; 
+
+    if(button && img){
+        button.addEventListener('click', () => {
+            button.disabled = true;
+            triggeraudio.currentTime = 0.5;
+            triggeraudio.play().catch(err => console.warn("Playback failed:", err));
+            img.classList.add("shake");
+            img.src = newSrc; 
+
+            setTimeout(() => {
+                button.disabled = false;
+                triggeraudio.pause()
+                img.classList.remove("shake");
+                img.src = originalSrc;
+            }, 2000);
+        }); 
+    }
+
+</script>
