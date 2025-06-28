@@ -5,8 +5,6 @@ import discord from '../assets/discors.png';
 import genshin from '../assets/gebsin.png';
 import minecraft from '../assets/mineraft.png';
 import fortnite from '../assets/fortnit.png';
-import hover from '../audio/hover.mp3';
-import select from '../audio/select.mp3';
 import { Image } from 'astro:assets';
 
 const icons = [
@@ -19,8 +17,8 @@ const icons = [
 ];
 ---
 
-<audio id="hover-sound" src={hover}></audio>
-<audio id="select-sound" src={select}></audio>
+<audio id="hover-sound" src={'../audio/hover.mp3'}></audio>
+<audio id="select-sound" src={'../audio/select.mp3'}></audio>
 
 <div>
     <main>
@@ -172,7 +170,7 @@ const icons = [
 
     @font-face {
         font-family: 'Genshin';
-        src: url('../fonts/genshit.ttf') format('truetype');
+        src: url('/fonts/genshit.ttf') format('truetype');
         font-weight: normal;
         font-style: normal;
     }
